@@ -1,0 +1,98 @@
+import type { PublicPlan } from "@/lib/api";
+
+// Sample plans for development and CI only (PLANS_FALLBACK=fixtures). Not real prices: production renders
+// only what `GET /api/v1/public/plans` returns. Amounts are Rial, as the backend sends them.
+const irr = (amount: number) => ({ amount, currency: "IRR" });
+
+const feature = (key: string, label: string, included: boolean, limit?: string) => ({ key, label, included, limit: limit ?? null });
+
+export const fixturePlans: PublicPlan[] = [
+  {
+    code: "free",
+    name: "رایگان",
+    tagline: "برای شروع و امتحان",
+    monthly: irr(0),
+    annual: irr(0),
+    aiConversations: 50,
+    overagePerConversation: null,
+    channelAccounts: 1,
+    seats: 1,
+    highlighted: false,
+    features: [
+      feature("rules", "اتوماسیون قانون‌محور نامحدود", true),
+      feature("comment_to_dm", "کامنت به دایرکت و استوری", true),
+      feature("inbox", "صندوق گفت‌وگو", true),
+      feature("storefront", "ویترین محصولات", true, "۲۰ محصول"),
+      feature("crm", "فرم و مدیریت مشتری", true),
+      feature("handoff", "تحویل به انسان", true),
+      feature("branding", "حذف نشان پیشخوان", false),
+      feature("receipts", "بررسی رسید کارت‌به‌کارت", false),
+    ],
+  },
+  {
+    code: "starter",
+    name: "پایه",
+    tagline: "برای پیج‌های در حال رشد",
+    monthly: irr(4_900_000),
+    annual: irr(49_000_000),
+    aiConversations: 500,
+    overagePerConversation: irr(12_000),
+    channelAccounts: 1,
+    seats: 2,
+    highlighted: false,
+    features: [
+      feature("rules", "اتوماسیون قانون‌محور نامحدود", true),
+      feature("comment_to_dm", "کامنت به دایرکت و استوری", true),
+      feature("inbox", "صندوق گفت‌وگو", true),
+      feature("storefront", "ویترین محصولات", true, "نامحدود"),
+      feature("crm", "فرم و مدیریت مشتری", true),
+      feature("handoff", "تحویل به انسان", true),
+      feature("branding", "حذف نشان پیشخوان", true),
+      feature("receipts", "بررسی رسید کارت‌به‌کارت", false),
+    ],
+  },
+  {
+    code: "growth",
+    name: "رشد",
+    tagline: "برای فروشگاه‌های پرمشتری",
+    monthly: irr(12_900_000),
+    annual: irr(129_000_000),
+    aiConversations: 2000,
+    overagePerConversation: irr(9_000),
+    channelAccounts: 3,
+    seats: 5,
+    highlighted: true,
+    features: [
+      feature("rules", "اتوماسیون قانون‌محور نامحدود", true),
+      feature("comment_to_dm", "کامنت به دایرکت و استوری", true),
+      feature("inbox", "صندوق گفت‌وگو", true),
+      feature("storefront", "ویترین محصولات", true, "نامحدود"),
+      feature("crm", "فرم و مدیریت مشتری", true),
+      feature("handoff", "تحویل به انسان", true),
+      feature("branding", "حذف نشان پیشخوان", true),
+      feature("receipts", "بررسی رسید کارت‌به‌کارت", true, "۵۰۰ رسید"),
+    ],
+  },
+  {
+    code: "business",
+    name: "حرفه‌ای",
+    tagline: "برای برندها و چند پیج",
+    monthly: irr(29_900_000),
+    annual: irr(299_000_000),
+    aiConversations: 6000,
+    overagePerConversation: irr(7_000),
+    channelAccounts: 10,
+    seats: 15,
+    highlighted: false,
+    features: [
+      feature("rules", "اتوماسیون قانون‌محور نامحدود", true),
+      feature("comment_to_dm", "کامنت به دایرکت و استوری", true),
+      feature("inbox", "صندوق گفت‌وگو", true),
+      feature("storefront", "ویترین محصولات", true, "نامحدود"),
+      feature("crm", "فرم و مدیریت مشتری", true),
+      feature("handoff", "تحویل به انسان", true),
+      feature("branding", "حذف نشان پیشخوان", true),
+      feature("receipts", "بررسی رسید کارت‌به‌کارت", true, "۲٬۰۰۰ رسید"),
+    ],
+  },
+];
