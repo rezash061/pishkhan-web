@@ -4,6 +4,7 @@ import { ButtonLink } from "@/components/ui";
 
 export default async function NotFound() {
   const t = await getTranslations("errors");
+  const nav = await getTranslations("nav");
   return (
     <SiteChrome>
       <div className="container-page flex min-h-[60vh] flex-col items-center justify-center py-20 text-center">
@@ -13,7 +14,7 @@ export default async function NotFound() {
         <div className="mt-8 flex flex-wrap justify-center gap-3">
           <ButtonLink href="/">{t("home")}</ButtonLink>
           <ButtonLink href="/help" variant="secondary">
-            راهنما
+            {nav("help")}
           </ButtonLink>
         </div>
       </div>
