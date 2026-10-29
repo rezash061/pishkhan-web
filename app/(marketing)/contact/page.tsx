@@ -17,7 +17,7 @@ export default async function ContactPage() {
     company.telegram ? { icon: "telegram" as const, label: t("footer.telegram"), href: `https://t.me/${company.telegram}`, value: `@${company.telegram}` } : null,
     company.bale ? { icon: "message" as const, label: t("footer.bale"), href: `https://ble.ir/${company.bale}`, value: `@${company.bale}` } : null,
     company.phone ? { icon: "phone" as const, label: t("footer.phone"), href: `tel:${company.phone}`, value: toPersianDigits(company.phone) } : null,
-    { icon: "message" as const, label: "ایمیل", href: `mailto:${company.email}`, value: company.email },
+    { icon: "message" as const, label: t("footer.email"), href: `mailto:${company.email}`, value: company.email },
   ].filter((c) => c !== null);
 
   return (
