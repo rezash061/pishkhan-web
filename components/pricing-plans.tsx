@@ -40,7 +40,7 @@ export function PricingPlans({ plans, mode, panelUrl }: { plans: PublicPlan[]; m
       <div className={`grid gap-5 sm:grid-cols-2 ${plans.length >= 4 ? "xl:grid-cols-4" : "lg:grid-cols-3"}`}>
         {plans.map((plan) => {
           const price = period === "annual" && plan.annual ? plan.annual : plan.monthly;
-          const isFree = price !== null && price.amount === 0;
+          const isFree = plan.isFree || (price !== null && price.amount === 0);
           const className = `mt-6 flex h-12 items-center justify-center gap-2 rounded-full font-bold transition-colors ${
             plan.highlighted ? "bg-brand-600 text-white hover:bg-brand-700" : "border border-border bg-surface hover:bg-surface-2"
           }`;
@@ -57,7 +57,8 @@ export function PricingPlans({ plans, mode, panelUrl }: { plans: PublicPlan[]; m
               <h3 id={`plan-${plan.code}`} className="text-xl font-black">
                 {plan.name}
               </h3>
-              <p className="mt-1 text-sm text-muted">{plan.tagline}</p>
+              {plan.tagline ? <p className="mt-1 text-sm text-muted">{plan.tagline}</p> : null}
+              {plan.description ? <p className="mt-3 text-sm leading-7 text-muted">{plan.description}</p> : null}
 
               <p className="mt-6 flex items-baseline gap-1.5">
                 {price === null ? (

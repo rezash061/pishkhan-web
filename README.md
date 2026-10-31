@@ -53,7 +53,7 @@ are placeholders in `content/site.ts` and are hidden until filled in.
 
 ## Backend dependencies
 
-`docs/backend-contract.md` lists what the backend already provides (ALTCHA, data-deletion status) and what the
-site calls but the backend has not shipped yet (`GET /public/plans`, `POST /public/leads`, `POST /public/demo-chat`,
-revalidation webhook). Until then: pricing shows "announced soon", the forms show a friendly error, and the demo
-says it is not live yet.
+`docs/backend-contract.md` lists what the backend already provides (ALTCHA, data-deletion status, `GET /public/plans`)
+and what the site calls but the backend has not shipped yet (`POST /public/leads`, `POST /public/demo-chat`,
+revalidation webhook). Until then the forms show a friendly error and the demo says it is not live yet. If the
+plans endpoint is down or empty, pricing shows "announced soon" in production.

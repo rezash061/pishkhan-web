@@ -9,8 +9,8 @@ const demoCounts = new Map();
 
 const irr = (amount) => ({ amount, currency: "IRR" });
 const plans = [
-  { code: "free", name: "رایگان", tagline: "برای شروع", monthly: irr(0), annual: irr(0), aiConversations: 50, overagePerConversation: null, channelAccounts: 1, seats: 1, highlighted: false, features: [{ key: "rules", label: "اتوماسیون نامحدود", included: true, limit: null }, { key: "receipts", label: "بررسی رسید", included: false, limit: null }] },
-  { code: "growth", name: "رشد", tagline: "برای فروشگاه‌ها", monthly: irr(9_990_000), annual: irr(99_900_000), aiConversations: 2000, overagePerConversation: irr(9_000), channelAccounts: 3, seats: 5, highlighted: true, features: [{ key: "rules", label: "اتوماسیون نامحدود", included: true, limit: null }, { key: "receipts", label: "بررسی رسید", included: true, limit: "۵۰۰ رسید" }] },
+  { code: "free", name: "رایگان", tagline: "برای شروع", description: null, isFree: true, limits: { ai_conversations: 50 }, monthly: irr(0), annual: irr(0), aiConversations: 50, overagePerConversation: null, channelAccounts: 1, seats: 1, highlighted: false, features: [{ key: "rules", label: "اتوماسیون نامحدود", included: true, limit: null }, { key: "receipts", label: "بررسی رسید", included: false, limit: null }] },
+  { code: "growth", name: "رشد", tagline: null, description: "برای فروشگاه‌های پرمشتری", isFree: false, limits: { ai_conversations: 2000 }, monthly: irr(9_990_000), annual: irr(99_900_000), aiConversations: 2000, overagePerConversation: irr(9_000), channelAccounts: 3, seats: 5, highlighted: true, features: [{ key: "rules", label: "اتوماسیون نامحدود", included: true, limit: null }, { key: "receipts", label: "بررسی رسید", included: true, limit: "۵۰۰ رسید" }] },
 ];
 
 function send(res, status, body, type = "application/json") {

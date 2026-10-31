@@ -5,10 +5,14 @@ import type { PublicPlan } from "@/lib/api";
 const irr = (amount: number) => ({ amount, currency: "IRR" });
 
 const feature = (key: string, label: string, included: boolean, limit?: string) => ({ key, label, included, limit: limit ?? null });
+const limits = (ai: number, channels: number, seats: number) => ({ ai_conversations: ai, channel_accounts: channels, seats });
 
 export const fixturePlans: PublicPlan[] = [
   {
     code: "free",
+    description: null,
+    isFree: true,
+    limits: limits(50, 1, 1),
     name: "رایگان",
     tagline: "برای شروع و امتحان",
     monthly: irr(0),
@@ -31,6 +35,9 @@ export const fixturePlans: PublicPlan[] = [
   },
   {
     code: "starter",
+    description: null,
+    isFree: false,
+    limits: limits(500, 1, 2),
     name: "پایه",
     tagline: "برای پیج‌های در حال رشد",
     monthly: irr(4_900_000),
@@ -53,6 +60,9 @@ export const fixturePlans: PublicPlan[] = [
   },
   {
     code: "growth",
+    description: null,
+    isFree: false,
+    limits: limits(2000, 3, 5),
     name: "رشد",
     tagline: "برای فروشگاه‌های پرمشتری",
     monthly: irr(12_900_000),
@@ -75,6 +85,9 @@ export const fixturePlans: PublicPlan[] = [
   },
   {
     code: "business",
+    description: null,
+    isFree: false,
+    limits: limits(6000, 10, 15),
     name: "حرفه‌ای",
     tagline: "برای برندها و چند پیج",
     monthly: irr(29_900_000),
