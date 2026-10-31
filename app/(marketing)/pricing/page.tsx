@@ -9,8 +9,9 @@ import { Icon } from "@/components/icons";
 import { PricingPlans } from "@/components/pricing-plans";
 import { PageHeader } from "@/components/ui";
 
-// Refreshed hourly and immediately when the backend revalidates the `plans` tag after a plan is published.
-export const revalidate = 3600;
+// Refreshed every 10 minutes (the backend caches plans as long) and immediately when the backend revalidates
+// the `plans` tag after a plan is published.
+export const revalidate = 600;
 
 export async function generateMetadata() {
   const t = await getTranslations("pricing");

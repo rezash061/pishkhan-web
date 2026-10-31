@@ -79,31 +79,37 @@ export interface DataDeletionStatus {
   createdAt: string;
 }
 
-// ---- Proposed contract (BE-1.13 and Billing, not in public.v1.json yet; see docs/backend-contract.md) ----
-
+/** One line of a plan's price list. */
 export interface PlanFeature {
   key: string;
   label: string;
   included: boolean;
   /** Optional limit shown next to the label, for example «۳ حساب». */
-  limit?: string | null;
+  limit: string | null;
 }
 
+/** `GET /plans`: published plans in display order (backend Billing, `PublicPlan` in public.v1.json). */
 export interface PublicPlan {
   code: string;
   name: string;
-  tagline: string;
-  monthly: { amount: number; currency: string } | null;
+  tagline: string | null;
+  description: string | null;
+  monthly: { amount: number; currency: string };
   annual: { amount: number; currency: string } | null;
   /** Included AI conversations per month; `null` means unlimited. */
   aiConversations: number | null;
-  /** Price of one AI conversation above the included amount (soft overage). */
+  /** Price of one AI conversation above the included amount (soft overage); `null` means none. */
   overagePerConversation: { amount: number; currency: string } | null;
   channelAccounts: number | null;
   seats: number | null;
   highlighted: boolean;
+  isFree: boolean;
+  /** Per-meter limits (`ai_conversations`, `seats`, ...); `null` means unlimited. */
+  limits: Record<string, number | null>;
   features: PlanFeature[];
 }
+
+// ---- Proposed contract (BE-1.13, not in public.v1.json yet; see docs/backend-contract.md) ----
 
 export interface LeadRequest {
   type: "waitlist" | "contact";
