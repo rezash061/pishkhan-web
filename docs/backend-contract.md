@@ -2,7 +2,7 @@
 
 The site calls only the backend's public API (`/api/v1/public/*`, `backend/openapi/public.v1.json` in
 `rezash061/pishkhan-backend`). This file lists what exists today and what the site already calls but the backend
-has not shipped yet (backend work package **BE-1.13 Content and public APIs** and the Billing module).
+has not shipped yet (backend work package **BE-1.13 Content and public APIs**).
 The site degrades gracefully until each one exists.
 
 ## Already in `public.v1.json` (used as is)
@@ -10,23 +10,13 @@ The site degrades gracefully until each one exists.
 | Endpoint | Used by | Notes |
 |---|---|---|
 | `GET /altcha/challenge` | `/api/altcha` → lead form, demo chat | Solved in the browser (`lib/altcha.ts`), solution sent as `altcha` (base64 JSON), verified once by the backend. |
+| `GET /plans` | `/pricing`, landing pricing teaser, `SoftwareApplication` JSON-LD | Backend Billing (BE-1.11, backend PR #22). Plain array of `PublicPlan` in display order, only published plans, cached 10 minutes by the backend; the site revalidates every 10 minutes too, or at once via the `plans` tag. If it fails or returns no plans: production says prices are announced soon, dev/CI shows sample plans (`PLANS_FALLBACK=fixtures`). |
 | `GET /meta/instagram/data-deletion/{code}` | `/data-deletion?code=` status lookup | Statuses `received`, `processing`, `completed`. The backend's `Instagram:DataDeletionStatusUrl` default `https://pishkhan.ir/data-deletion` matches this page. |
 
 ## Proposed, not in the backend yet
 
-Shapes are defined in `lib/api.ts` (`PublicPlan`, `LeadRequest`, `DemoChatRequest/Response`). Field names follow
+Shapes are defined in `lib/api.ts` (`LeadRequest`, `DemoChatRequest/Response`). Field names follow
 the shared conventions (camelCase, Money as `{ amount, currency }` in Rial, Problem Details with message keys).
-
-### `GET /plans` (Billing, plan section 9.13)
-Returns `PublicPlan[]` (or `{ items }`), ordered for display. Until it exists the pricing page says prices are
-announced soon (production) or shows sample plans with a visible notice (`PLANS_FALLBACK=fixtures`, dev/CI only).
-
-```json
-{ "code": "growth", "name": "رشد", "tagline": "…", "monthly": { "amount": 12900000, "currency": "IRR" },
-  "annual": { "amount": 129000000, "currency": "IRR" }, "aiConversations": 2000,
-  "overagePerConversation": { "amount": 9000, "currency": "IRR" }, "channelAccounts": 3, "seats": 5,
-  "highlighted": true, "features": [{ "key": "receipts", "label": "بررسی رسید کارت‌به‌کارت", "included": true, "limit": "۵۰۰ رسید" }] }
-```
 
 ### `POST /leads` (Content, plan section 9.16)
 Body `LeadRequest`: `type` (`waitlist` | `contact`), `phone` (normalized `09xxxxxxxxx`), optional `name`,

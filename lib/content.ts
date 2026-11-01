@@ -15,16 +15,19 @@ export { legalDocs, getLegalDoc } from "@/content/legal";
 /** Cache tag the backend's revalidation webhook targets when plans change. */
 export const PLANS_TAG = "plans";
 
+/** Matches the backend's 10-minute plan cache, so a publish shows here within about 10 minutes even without the webhook. */
+export const PLANS_REVALIDATE_SECONDS = 600;
+
 export type PlansResult = { source: "backend" | "fixtures"; plans: PublicPlan[] } | { source: "unavailable"; plans: [] };
 
 /**
  * Plans come only from `GET /api/v1/public/plans` (plan WS-1.4: prices are never hard-coded). The response is
- * cached for an hour and refreshed immediately when the backend calls `/api/revalidate` with tag `plans`.
+ * cached for 10 minutes and refreshed immediately when the backend calls `/api/revalidate` with tag `plans`.
  */
 export async function getPlans(): Promise<PlansResult> {
-  const result = await publicApi<PublicPlan[] | { items: PublicPlan[] }>("/plans", { revalidate: 3600, tags: [PLANS_TAG], timeoutMs: 5000 });
-  if (result.ok) {
-    const plans = Array.isArray(result.data) ? result.data : result.data.items;
+  const result = await publicApi<PublicPlan[]>("/plans", { revalidate: PLANS_REVALIDATE_SECONDS, tags: [PLANS_TAG], timeoutMs: 5000 });
+  if (result.ok && Array.isArray(result.data)) {
+    const plans = result.data;
     if (plans.length > 0) {
       return { source: "backend", plans };
     }

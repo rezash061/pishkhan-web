@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+### Changed (2026-10-31)
+- Pricing uses the backend's real `GET /public/plans` shape (BE-1.11): nullable `tagline`, `description`, `isFree`, `limits`; plans revalidate every 10 minutes to match the backend cache.
+
 ### Added (2026-10-29, website Phase 0 and Phase 1 static scope)
 - Next.js 16 App Router app with route groups `(marketing)`, `(content)`, `(legal)`; `fa` RTL, self-hosted variable
   Vazirmatn, light and dark tokens, Persian 404 and error pages (WS-0.1).
