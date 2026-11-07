@@ -46,7 +46,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((ns) => [ns, messages[ns]]));
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.variable}>
-      <head><meta name="enamad" content="65512367" /></head>
+      <head>
+        <title>65512367</title>
+        <meta name="enamad" content="65512367" /></head>
       <body className="min-h-dvh font-sans antialiased">
         <NextIntlClientProvider messages={clientMessages}>{children}</NextIntlClientProvider>
         <AttributionCapture />
