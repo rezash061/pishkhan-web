@@ -21,7 +21,8 @@ export async function generateMetadata() {
   const t = await getTranslations("brand");
   return {
     ...pageMetadata({
-      title: `${t("name")} | ربات فروش و دایرکت هوشمند اینستاگرام`,
+      //title: `${t("name")} | ربات فروش و دایرکت هوشمند اینستاگرام`,
+      title: '65512367',
       description: "پاسخ‌گوی هوش مصنوعی دایرکت اینستاگرام برای فروشندگان ایرانی: فارسی محاوره و فینگلیش، بررسی رسید کارت‌به‌کارت، لینک پرداخت و ادامه فروش در قطعی اینستاگرام.",
       path: "/",
     }),
