@@ -18,7 +18,8 @@ const vazirmatn = localFont({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("brand");
-  const title = `${t("name")} | ${t("tagline")}`;
+  const title = `65512367`;
+  // const title = `${t("name")} | ${t("tagline")}`;
   return {
     metadataBase: new URL(env.siteUrl),
     title: { default: title, template: `%s | ${company.brand}` },
@@ -47,7 +48,6 @@ export default async function RootLayout({ children }: { children: React.ReactNo
   return (
     <html lang="fa" dir="rtl" className={vazirmatn.variable}>
       <head>
-        <title>65512367</title>
         <meta name="enamad" content="65512367" /></head>
       <body className="min-h-dvh font-sans antialiased">
         <NextIntlClientProvider messages={clientMessages}>{children}</NextIntlClientProvider>
