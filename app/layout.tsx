@@ -21,8 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const title = `${t("name")} | ${t("tagline")}`;
   return {
     metadataBase: new URL(env.siteUrl),
-    //title: { default: title, template: `%s | ${company.brand}` },
-    title: { default:title,template: ''},
+    title: { default: title, template: `%s | ${company.brand}` },
     description: "دستیار فروش هوشمند اینستاگرام برای فروشندگان فارسی‌زبان: پاسخ خودکار دایرکت با فارسی محاوره، بررسی رسید کارت‌به‌کارت و ادامه فروش در قطعی.",
     applicationName: company.brand,
     openGraph: { locale: "fa_IR", siteName: company.brand, type: "website" },
