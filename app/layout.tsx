@@ -18,8 +18,7 @@ const vazirmatn = localFont({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("brand");
-  const title = `65512367`;
-  // const title = `${t("name")} | ${t("tagline")}`;
+  const title = `${t("name")} | ${t("tagline")}`;
   return {
     metadataBase: new URL(env.siteUrl),
     title: { default: title, template: `%s | ${company.brand}` },
