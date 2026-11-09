@@ -10,9 +10,9 @@ next-intl (`fa`, RTL), self-hosted Vazirmatn. No foreign CDNs, fonts or scripts 
 ## Run it
 
 ```bash
-pnpm install
+npm install
 cp .env.example .env.local          # PLANS_FALLBACK=fixtures shows sample prices without a backend
-pnpm dev                            # http://localhost:3000
+npm run dev                         # http://localhost:3000
 ```
 
 Against the real backend set `PISHKHAN_API_URL` to the Api host (for example `http://localhost:5080` from the
@@ -20,17 +20,17 @@ backend's docker compose). To try the forms and demo chat without the backend:
 
 ```bash
 node tests/e2e/mock-backend.mjs     # http://localhost:5099
-PISHKHAN_API_URL=http://localhost:5099 pnpm dev
+PISHKHAN_API_URL=http://localhost:5099 npm run dev
 ```
 
 ## Scripts
 
 | Command | What it does |
 |---|---|
-| `pnpm build` / `pnpm start` | Production build (`output: "standalone"`) and server |
-| `pnpm lint` / `pnpm typecheck` | ESLint (Next core web vitals) and `tsc` |
-| `pnpm test` | Vitest unit tests (`tests/unit`) |
-| `pnpm test:e2e` | Playwright on mobile and desktop against `tests/e2e/mock-backend.mjs`, with axe checks |
+| `npm run build` / `npm start` | Production build (`output: "standalone"`) and server |
+| `npm run lint` / `npm run typecheck` | ESLint (Next core web vitals) and `tsc` |
+| `npm test` | Vitest unit tests (`tests/unit`) |
+| `npm run test:e2e` | Playwright on mobile and desktop against `tests/e2e/mock-backend.mjs`, with axe checks |
 
 ## Layout
 

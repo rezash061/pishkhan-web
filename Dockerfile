@@ -1,13 +1,11 @@
 # Self-hosted standalone build (no Vercel), for the domestic zone behind Nginx.
 FROM node:22-alpine AS deps
 WORKDIR /app
-RUN corepack enable
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
+COPY package.json package-lock.json ./
+RUN npm ci --no-audit --no-fund
 
 FROM node:22-alpine AS build
 WORKDIR /app
-RUN corepack enable
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 ENV NEXT_TELEMETRY_DISABLED=1
@@ -18,7 +16,7 @@ ARG SITE_URL=https://pishkhan.ir
 ARG PANEL_URL=https://app.pishkhan.ir
 ARG SIGNUP_MODE=waitlist
 ENV PISHKHAN_API_URL=$PISHKHAN_API_URL SITE_URL=$SITE_URL PANEL_URL=$PANEL_URL SIGNUP_MODE=$SIGNUP_MODE
-RUN pnpm build
+RUN npm run build
 
 FROM node:22-alpine AS run
 WORKDIR /app
