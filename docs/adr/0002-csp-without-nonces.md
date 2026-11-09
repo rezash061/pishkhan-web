@@ -8,7 +8,7 @@ model (static generation + ISR + on-demand revalidation) depend on static HTML.
 
 **Decision.** Keep pages static and send a CSP from `next.config.ts` that allows scripts only from this origin plus
 `'unsafe-inline'` for Next.js' inline RSC bootstrap. Everything else is locked down: `default-src 'self'`,
-`connect-src 'self'`, `img-src 'self' data: blob:`, `font-src 'self'`, `frame-ancestors 'none'`, `form-action 'self'`,
+`connect-src 'self'`, `img-src 'self' data: blob: https://trustseal.enamad.ir`, `font-src 'self'`, `frame-ancestors 'none'`, `form-action 'self'`,
 `object-src 'none'`, `base-uri 'self'`.
 
 **Why this is acceptable here.** The site has no logged-in pages, no cookies of value and no user-generated HTML:

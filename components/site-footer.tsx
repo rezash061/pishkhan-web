@@ -115,12 +115,15 @@ export async function SiteFooter() {
           </p>
           <div className="flex items-center gap-3">
             {company.enamad.id ? (
-              <a
-                href={`https://trustseal.enamad.ir/?id=${company.enamad.id}&Code=${company.enamad.code}`}
-                rel="noopener noreferrer"
-                className="rounded-lg border border-border px-3 py-1.5"
-              >
-                {t("footer.enamad")}
+              <a referrerPolicy="origin" target="_blank" href={company.enamad.href} aria-label={t("footer.enamad")}>
+                <img
+                  referrerPolicy="origin"
+                  src={company.enamad.logo}
+                  alt=""
+                  style={{ cursor: "pointer" }}
+                  className="h-24 w-auto"
+                  {...{ code: company.enamad.code }}
+                />
               </a>
             ) : (
               <span className="text-xs">{t("footer.enamadPending")}</span>

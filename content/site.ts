@@ -15,8 +15,13 @@ export const company = {
   telegram: "",
   bale: "",
   email: "support@pishkhan.ir",
-  /** TODO: eNamad seal id and code once issued (WS-2.6). */
-  enamad: { id: "", code: "" },
+  // Issued seal. href and logo must stay exactly as eNamad provided them.
+  enamad: {
+    id: "8582193",
+    code: "CY0mBDaQXjEDepvfz1Vai5nrNFPehmZA",
+    href: "https://trustseal.enamad.ir/?id=8582193&Code=CY0mBDaQXjEDepvfz1Vai5nrNFPehmZA",
+    logo: "https://trustseal.enamad.ir/logo.aspx?id=8582193&Code=CY0mBDaQXjEDepvfz1Vai5nrNFPehmZA",
+  },
 };
 
 export const outcomes: { icon: IconName; title: string; text: string }[] = [
