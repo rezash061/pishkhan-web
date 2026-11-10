@@ -1,10 +1,19 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-test("landing page is Persian, RTL and makes no third-party requests", async ({ page, baseURL }) => {
+// The eNamad trust seal is the one third-party request the site makes (eNamad requires their own image and link). It is answered
+// locally here: eNamad does not answer from outside Iran, and a page waiting for it would never finish loading in CI.
+const enamad = "https://trustseal.enamad.ir/";
+const seal = Buffer.from("iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==", "base64");
+
+test.beforeEach(async ({ page }) => {
+  await page.route(`${enamad}**`, (route) => route.fulfill({ status: 200, contentType: "image/png", body: seal }));
+});
+
+test("landing page is Persian, RTL and makes no third-party requests but the eNamad seal", async ({ page, baseURL }) => {
   const foreign: string[] = [];
   page.on("request", (r) => {
-    if (!r.url().startsWith(baseURL!) && !r.url().startsWith("data:")) foreign.push(r.url());
+    if (!r.url().startsWith(baseURL!) && !r.url().startsWith("data:") && !r.url().startsWith(enamad)) foreign.push(r.url());
   });
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "fa");

@@ -116,6 +116,8 @@ export async function SiteFooter() {
           <div className="flex items-center gap-3">
             {company.enamad.id ? (
               <a referrerPolicy="origin" target="_blank" href={company.enamad.href} aria-label={t("footer.enamad")}>
+                {/* eNamad requires its own image, loaded from its host with this referrer, so next/image does not apply. */}
+                {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   referrerPolicy="origin"
                   src={company.enamad.logo}
