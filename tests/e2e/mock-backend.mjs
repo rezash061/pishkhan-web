@@ -1,5 +1,5 @@
 // Minimal stand-in for the backend public API, used by the Playwright suite (and handy for local dev:
-// `node tests/e2e/mock-backend.mjs` then `PISHKHAN_API_URL=http://localhost:5099 pnpm dev`).
+// `node tests/e2e/mock-backend.mjs` then `PISHKHAN_API_URL=http://localhost:5099 npm run dev`).
 import { createHash } from "node:crypto";
 import { createServer } from "node:http";
 

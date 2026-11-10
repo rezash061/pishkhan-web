@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "packageManager": "pnpm@10.28.0",
+  "packageManager": "npm@10.9.9",
   "engines": {
     "node": ">=22"
   },
@@ -40,11 +40,5 @@
     "typescript": "^5.9.3",
     "vazirmatn": "^33.0.3",
     "vitest": "^5.0.5"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "sharp",
-      "unrs-resolver"
-    ]
   }
 }

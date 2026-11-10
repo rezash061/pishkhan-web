@@ -9,3 +9,6 @@ next-env.d.ts
 .env*.local
 .env
 !.env.example
+
+# Local agent tool state
+.omc/

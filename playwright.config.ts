@@ -17,7 +17,7 @@ export default defineConfig({
   webServer: [
     { command: "node tests/e2e/mock-backend.mjs", url: `http://localhost:${mockPort}/api/v1/public/plans`, reuseExistingServer: !process.env.CI, env: { MOCK_PORT: String(mockPort) } },
     {
-      command: `pnpm build && pnpm start -p ${port}`,
+      command: `npm run build && npm start -- -p ${port}`,
       url: `http://localhost:${port}`,
       timeout: 240_000,
       reuseExistingServer: !process.env.CI,
