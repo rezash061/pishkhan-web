@@ -2,6 +2,20 @@
 
 ## Unreleased
 
+### Changed (2026-11-10)
+- The four Phase 2 features are live, no longer «به‌زودی». Their pages drop the waitlist notice and show the «live» badge, and the
+  footer lists them. Copy now matches what the backend and panel ship:
+  - **Card-to-card receipt verification** (BE-2.10). Duplicates are caught by reference number or image. Receipts sent during an
+    order are taken automatically. Approval stays with the seller; auto-approve opens later as an option. Edited-image detection is
+    no longer claimed.
+  - **Zarinpal payment links** (BE-2.2), with the seller's own merchant id.
+  - **Voice notes and Finglish** (BE-2.3, BE-2.4).
+  - **Outage continuity** (BE-2.7). The outage notice in the panel, SMS only to customers who consented, a link to the shop's Bale
+    bot, and Bale chats in the team inbox.
+- Storefront: bulk price edit (BE-2.6) is no longer «به‌زودی». Importing products from the page's posts (BE-2.5) is mentioned.
+- The receipts blog post describes the shipped feature instead of «به‌زودی».
+- Build: npm replaces pnpm (`package-lock.json`, `npm ci` in CI and the Dockerfile).
+
 ### Changed (2026-10-31)
 - Pricing uses the backend's real `GET /public/plans` shape (BE-1.11): nullable `tagline`, `description`, `isFree`, `limits`; plans revalidate every 10 minutes to match the backend cache.
 
