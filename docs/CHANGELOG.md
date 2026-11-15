@@ -2,6 +2,13 @@
 
 ## Unreleased
 
+### Added (2026-11-15)
+- English privacy policy at `/en/privacy` and English data deletion instructions at `/en/data-deletion`, for Meta app review.
+  They are written from what the backend does: the three Instagram permissions it requests, what is stored, AI processing,
+  processors, where data is hosted, retention (12 months for messages by default, 24 for receipts, 30-day grace on account
+  deletion) and the three ways to have data deleted. The Persian privacy page links to the English one; both are in the sitemap
+  with `hreflang` alternates. English passages keep Latin digits.
+
 ### Changed (2026-11-10)
 - The four Phase 2 features are live, no longer «به‌زودی». Their pages drop the waitlist notice and show the «live» badge, and the
   footer lists them. Copy now matches what the backend and panel ship:

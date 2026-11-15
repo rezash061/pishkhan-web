@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { blogCategories, features, helpArticles, helpCategories, legalDocs, posts, solutions } from "@/lib/content";
 import { absoluteUrl } from "@/lib/seo";
+import { legalDocsEn } from "@/content/legal-en";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const page = (path: string, priority: number, lastModified?: string): MetadataRoute.Sitemap[number] => ({
@@ -25,5 +26,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...helpCategories.map((c) => page(`/help/${c.slug}`, 0.4)),
     ...helpArticles.map((a) => page(`/help/${a.category}/${a.slug}`, 0.5, a.updatedAt)),
     ...legalDocs.map((d) => page(`/${d.slug}`, 0.3, d.updatedAt)),
+    ...legalDocsEn.map((d) => page(`/en/${d.slug}`, 0.3, d.updatedAt)),
   ];
 }

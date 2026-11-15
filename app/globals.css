@@ -89,6 +89,10 @@
     font-feature-settings: "ss01";
     text-rendering: optimizeLegibility;
   }
+  /* English passages (the /en legal pages) keep Latin digits: ss01 turns them into Persian ones. */
+  [lang="en"] {
+    font-feature-settings: normal;
+  }
   :focus-visible {
     outline: 2px solid var(--ring);
     outline-offset: 2px;
