@@ -92,7 +92,7 @@ test("lead endpoint rejects cross-site posts", async ({ request }) => {
   expect(response.status()).toBe(403);
 });
 
-for (const path of ["/", "/pricing", "/features/ai-agent", "/data-deletion", "/blog/reply-speed", "/contact"]) {
+for (const path of ["/", "/pricing", "/features/ai-agent", "/data-deletion", "/en/privacy", "/blog/reply-speed", "/contact"]) {
   test(`no serious accessibility violations on ${path}`, async ({ page }) => {
     await page.goto(path);
     const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa", "wcag22aa"]).analyze();
@@ -100,3 +100,15 @@ for (const path of ["/", "/pricing", "/features/ai-agent", "/data-deletion", "/b
     expect(serious.map((v) => `${v.id}: ${v.nodes.map((n) => n.target.join(" ")).slice(0, 3).join(", ")}`)).toEqual([]);
   });
 }
+
+test("English privacy policy and deletion instructions are reachable for Meta review", async ({ page }) => {
+  for (const path of ["/en/privacy", "/en/data-deletion"]) {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(200);
+    await expect(page.locator("article[lang=en][dir=ltr] h1")).toBeVisible();
+  }
+  await page.goto("/en/privacy");
+  await expect(page.getByText("instagram_business_manage_messages", { exact: false }).first()).toBeVisible();
+  await page.goto("/privacy");
+  await expect(page.getByRole("link", { name: "Read this policy in English" })).toHaveAttribute("href", "/en/privacy");
+});
